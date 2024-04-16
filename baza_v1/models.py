@@ -26,7 +26,10 @@ class Manager(models.Model):
 # Punkty odniesienia
 class ReferencePoint(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
-    point_name = models.CharField(max_length=255)
+    ref_point_1 = models.CharField(max_length=255, default='')
+    ref_point_2 = models.CharField(max_length=255, default='')
+    ref_point_3 = models.CharField(max_length=255, default='')
+    ref_point_4 = models.CharField(max_length=255, default='')
 
 # Statki powietrzne
 class BasedAircraft(models.Model):
