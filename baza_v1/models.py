@@ -6,6 +6,9 @@ class Airport(models.Model):
     fac_type = models.CharField(max_length=255)
     loc_id = models.CharField(max_length=255)
     eff_date = models.DateField()
+    
+    class Meta:
+        db_table = "Airport"
 
 # Właściciel
 class Owner(models.Model):
@@ -15,6 +18,9 @@ class Owner(models.Model):
     owner_city = models.CharField(max_length=255)
     owner_phon = models.CharField(max_length=255)
 
+    class Meta:
+        db_table = "Owner"
+
 # Zarządca
 class Manager(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
@@ -22,6 +28,9 @@ class Manager(models.Model):
     manager_addr = models.TextField()
     manager_city = models.CharField(max_length=255)
     manager_phon = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = "Manager"
 
 # Punkty odniesienia
 class ReferencePoint(models.Model):
@@ -31,7 +40,13 @@ class ReferencePoint(models.Model):
     ref_point_3 = models.CharField(max_length=255, default='')
     ref_point_4 = models.CharField(max_length=255, default='')
 
+    class Meta:
+        db_table = "ReferencePoint"
+
 # Statki powietrzne
 class BasedAircraft(models.Model):
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
     aircraft_type = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = "BasedAircraft"
