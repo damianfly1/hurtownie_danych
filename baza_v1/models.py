@@ -33,19 +33,43 @@ class ReferencePoint(models.Model):
     class Meta:
         db_table = "ReferencePoint"
 
+class SiteNumber(models.Model):
+    site_number = models.CharField(max_length=255, unique=True)  # kod lotniska
+
+    class Meta:
+        db_table = "SiteNumber"
+
+class Type(models.Model):
+    type = models.CharField(max_length=255)  # typ lotniska
+
+    class Meta:
+        db_table = "Type"
+
+class RegionCode(models.Model):
+    region_code = models.CharField(max_length=255)  # kod regionu
+
+    class Meta:
+        db_table = "RegionCode"
+
+class Location(models.Model):
+    location = models.CharField(max_length=255)  # id lokalizacji
+
+    class Meta:
+        db_table = "Location"
 
 # Lotnisko
 class Airport(models.Model):
-    site_number = models.CharField(max_length=255, unique=True)  # kod lotniska
-    type = models.CharField(max_length=255)  # typ lotniska
+    
     date = models.DateField()  # data dodania danych, mapuje się do eff_date
-    region_code = models.CharField(max_length=255)  # kod regionu
-    location_id = models.CharField(max_length=255)  # id lokalizacji
 
     # tabele faktów
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
     reference_point = models.ForeignKey(ReferencePoint, on_delete=models.CASCADE)
+    site_number = models.ForeignKey(SiteNumber, on_delete=models.CASCADE)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    region_code = models.ForeignKey(RegionCode, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     # agregaty
     jet_count = models.IntegerField()  # liczba myśliwców

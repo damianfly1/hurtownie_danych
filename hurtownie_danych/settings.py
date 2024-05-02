@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'hurtownie_danych.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'HurtownieDanychV1',
+        'NAME': 'HurtownieDanychV2',
         'USER': '',
         'PASSWORD': '',
         'PORT': '',

@@ -4,6 +4,11 @@ from baza_v1.models import Airport
 from baza_v1.models import Owner
 from baza_v1.models import ReferencePoint
 from baza_v1.models import Manager
+from baza_v1.models import SiteNumber
+from baza_v1.models import Type
+from baza_v1.models import RegionCode
+from baza_v1.models import Location
+
 
 with open("Airports.csv", newline="") as csvfile:
     reader = csv.DictReader(csvfile)
@@ -26,12 +31,24 @@ with open("Airports.csv", newline="") as csvfile:
             manager_city=row["Manager_Ci"],
             manager_phon=row["Manager_Ph"],
         )
+        site_number = SiteNumber.objects.create(
+            site_number = row["Site_Num"],
+        )
+        type = Type.objects.create(
+            type = row["Fac_Type"],
+        )
+        region_code = RegionCode.objects.create(
+            region_code = row["Region_Cod"]
+        )
+        location = Location.objects.create(
+            location = row["Loc_Id"]
+        )
         Airport.objects.create(
-            site_number=row["Site_Num"],
-            type=row["Fac_Type"],
-            location_id=row["Loc_Id"],
+            site_number=site_number,
+            type=type,
+            location=location,
             date=datetime.strptime(row["Eff_Date"], "%m/%d/%Y"),
-            region_code=row["Region_Cod"],
+            region_code=region_code,
             jet_count=row["Based_Jet_"] if row["Based_Jet_"] is not "" else 0,
             helicopter_count=row["Based_Heli"] if row["Based_Heli"] is not "" else 0,
             military_aircraft_count=(
