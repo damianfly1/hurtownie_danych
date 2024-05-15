@@ -58,13 +58,7 @@ class Airport(models.Model):
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
     region_code = models.ForeignKey(RegionCode, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-
-    # agregaty
-    jet_count = models.IntegerField()  # liczba myśliwców
-    helicopter_count = models.IntegerField()  # liczba helikopterów
-    military_aircraft_count = models.IntegerField()  # liczba militarnych
-    commercial_aircraft_count = models.IntegerField()  # liczba cywlinych
-    flight_count = models.IntegerField()  # ilość lotów (Ga_Local_O)
+    count = models.IntegerField()
 
     class Meta:
         db_table = "Airport"
