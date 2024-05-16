@@ -22,36 +22,37 @@ class Manager(models.Model):
     class Meta:
         db_table = "Manager"
 
+
 # Typ lotniska
 class Type(models.Model):
-    type = models.CharField(max_length=255)  
+    type = models.CharField(max_length=255)
 
     class Meta:
         db_table = "Type"
 
+
 # Kod regionu
 class RegionCode(models.Model):
-    region_code = models.CharField(max_length=255)  
+    region_code = models.CharField(max_length=255)
 
     class Meta:
         db_table = "RegionCode"
 
-#Lokalizacja
+
+# Lokalizacja
 class Location(models.Model):
-    state_post = models.CharField(max_length=255),
-    state_name = models.CharField(max_length=255),
-    county = models.CharField(max_length=255),
-    county_pos = models.CharField(max_length=255),
+    state_post = models.CharField(max_length=255)
+    state_name = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    country_pos = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
 
     class Meta:
         db_table = "Location"
 
+
 # Lotnisko
 class Airport(models.Model):
-    
-    date = models.DateField()  # data dodania danych, mapuje się do eff_date
-
     # tabele faktów
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
